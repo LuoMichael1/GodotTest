@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1c7q8tben4ku"]
+
+[ext_resource type="Script" uid="uid://dtyj80ydu6hqn" path="res://character_body_2d.gd" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://dcl8ny2wlakgf" path="res://icon.svg" id="1_wtcfe"]
+[ext_resource type="Texture2D" uid="uid://c8yopo6jhbje4" path="res://colours4.png" id="3_epypp"]
+[ext_resource type="Script" uid="uid://drnycgn3h0k08" path="res://health_bar.gd" id="4_0hol4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
+size = Vector2(38, 38)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e48y"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_epypp"]
+distance = -350.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0hol4"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -513.0
+offset_top = -261.0
+offset_right = -174.0
+offset_bottom = -232.0
+rounded = true
+script = ExtResource("4_0hol4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(0, -28)
+script = ExtResource("1_0e48y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_epypp")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(9.53674e-07, 0)
+scale = Vector2(0.296875, 0.296875)
+texture = ExtResource("1_wtcfe")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(-3, 97)
+shape = SubResource("WorldBoundaryShape2D_0e48y")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+position = Vector2(3, 154)
+texture = ExtResource("3_epypp")
+
+[node name="Left Wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall"]
+position = Vector2(-227, 17)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_epypp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(575, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_0hol4")
